@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./user-management-portal
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Map host port 3000 to container port 80 (Nginx)
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./services
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001" # Map host port 3001 to container port 3001 (Express)
+    environment:
+      MONGO_URI: mongodb://mongo:27017/user_management
+    depends_on:
+      - mongo
+    volumes:
+      - ./services:/usr/src/app # Mount host services dir to container for development
+      - /usr/src/app/node_modules # Do not mount node_modules from host
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017" # Map host port 27017 to container port 27017 (MongoDB)
+    volumes:
+      - mongo-data:/data/db # Persist MongoDB data
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+
+networks:
+  app-network:
+    driver: bridge 

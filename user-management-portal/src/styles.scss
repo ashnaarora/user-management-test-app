@@ -1,0 +1,40 @@
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; // Or your desired width
+  min-width: 320px;
+  background-color: #fff; // Simulating MUI's background.paper
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  // Simulating MUI's boxShadow for elevation (can be adjusted)
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 
+              0px 24px 38px 3px rgba(0,0,0,0.14), 
+              0px 9px 46px 8px rgba(0,0,0,0.12);
+  padding: 32px; // Simulating MUI's theme.spacing(4)
+  max-height: 90vh; // Changed from 200vh to be more reasonable for a modal
+  overflow-y: auto;
+}
+
+.homePageContainer {
+  display: flex;
+  flex-direction: column;
+  // align-items: center; // Centering items if they are narrower than container
+  align-items: stretch; // Stretch items to fill the width of fit-content container
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  min-width: 500px; // Ensure it has some minimum width, adjust as needed for your table
+  max-width: 95%;     // Adjusted for potentially wide tables
+  padding: 20px;
+  margin-top: 20px; // Optional: add some space from the top of the page
+}
+
+.title-button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;        
+  width: 100%;                 
+  margin-bottom: 16px;        
+} 

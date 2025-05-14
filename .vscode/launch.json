@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "User management portal",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/user-management-portal/src",
+        "sourceMaps": true,
+        "skipFiles": [
+          "<node_internals>/**",
+          "**/node_modules/**"
+        ]
+      },
+      {
+        "name": "User management service",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/services/user-ms/index.js",
+        "cwd": "${workspaceFolder}/services/user-ms",
+        "runtimeExecutable": "node",
+        "skipFiles": [
+          "<node_internals>/**",
+          "**/node_modules/**"
+        ],
+        "env": {
+          "PORT": "3001",
+          "mongo_uri": "mongodb://127.0.0.1:27017/user_management"
+        }
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Launch Both (React + Node.js)",
+        "configurations": ["User management portal", "User management service"],
+        "stopAll": true
+      }
+    ]
+  } 
